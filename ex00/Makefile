@@ -2,13 +2,13 @@
 #                                Makefile (C++)                                #
 # **************************************************************************** #
 
-NAME     := first_ocf
+NAME     := fixed
 CXX      := c++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -g3
 
 OBJ_DIR  := obj/
 
-SRCS     := main.cpp
+SRCS     := main.cpp Fixed.cpp
 
 OBJS     := $(SRCS:%.cpp=$(OBJ_DIR)%.o)
 DEPS     := $(SRCS:%.cpp=$(OBJ_DIR)%.d)
