@@ -1,6 +1,10 @@
 #include <iostream>
 #include "Fixed.hpp"
 
+/**
+ * @brief The main function.
+ * @return 0 on success.
+ */
 int	main(void)
 {
 	Fixed a;
