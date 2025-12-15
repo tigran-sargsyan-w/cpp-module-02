@@ -114,3 +114,100 @@ std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
     out << fixed.toFloat();
     return out;
 }
+
+
+// ===== Comparison operators =====
+
+bool Fixed::operator>(const Fixed &rhs) const { return (value > rhs.value); }
+bool Fixed::operator<(const Fixed &rhs) const { return (value < rhs.value); }
+bool Fixed::operator>=(const Fixed &rhs) const { return (value >= rhs.value); }
+bool Fixed::operator<=(const Fixed &rhs) const { return (value <= rhs.value); }
+bool Fixed::operator==(const Fixed &rhs) const { return (value == rhs.value); }
+bool Fixed::operator!=(const Fixed &rhs) const { return (value != rhs.value); }
+
+// ===== Arithmetic operators =====
+
+Fixed Fixed::operator+(const Fixed &rhs) const
+{
+	Fixed out;
+	out.setRawBits(value + rhs.value);
+	return (out);
+}
+
+Fixed Fixed::operator-(const Fixed &rhs) const
+{
+	Fixed out;
+	out.setRawBits(value - rhs.value);
+	return (out);
+}
+
+Fixed Fixed::operator*(const Fixed &rhs) const
+{
+	Fixed out;
+	long long prod;
+
+	prod = static_cast<long long>(value) * static_cast<long long>(rhs.value);
+	out.setRawBits(static_cast<int>(prod >> fractionalBits));
+	return (out);
+}
+
+Fixed Fixed::operator/(const Fixed &rhs) const
+{
+	Fixed out;
+	long long num;
+
+	// Division by 0 may crash
+	num = (static_cast<long long>(value) << fractionalBits);
+	out.setRawBits(static_cast<int>(num / rhs.value));
+	return (out);
+}
+
+// ===== Increment / Decrement (epsilon = 1 / 256) =====
+
+Fixed &Fixed::operator++(void)
+{
+	value += 1;
+	return (*this);
+}
+
+Fixed Fixed::operator++(int)
+{
+	Fixed tmp(*this);
+	value += 1;
+	return (tmp);
+}
+
+Fixed &Fixed::operator--(void)
+{
+	value -= 1;
+	return (*this);
+}
+
+Fixed Fixed::operator--(int)
+{
+	Fixed tmp(*this);
+	value -= 1;
+	return (tmp);
+}
+
+// ===== Min / Max =====
+
+Fixed &Fixed::min(Fixed &a, Fixed &b)
+{
+	return (a < b ? a : b);
+}
+
+const Fixed &Fixed::min(const Fixed &a, const Fixed &b)
+{
+	return (a < b ? a : b);
+}
+
+Fixed &Fixed::max(Fixed &a, Fixed &b)
+{
+	return (a > b ? a : b);
+}
+
+const Fixed &Fixed::max(const Fixed &a, const Fixed &b)
+{
+	return (a > b ? a : b);
+}
