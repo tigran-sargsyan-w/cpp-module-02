@@ -1,6 +1,6 @@
-# Cheat Sheet: `float` (IEEE‑754, 32‑bit)
+# Cheat Sheet: `float` (IEEE‑754, 32‑bit) 💧
 
-## 1. What `float` actually is
+## 1. What `float` actually is 🧮
 
 * A **floating‑point** type: the value is stored approximately as
 
@@ -11,11 +11,11 @@
 
 ---
 
-## 2. Internal layout of a 32‑bit `float`
+## 2. Internal layout of a 32‑bit `float` 🧱
 
 Total **32 bits**:
 
-* 1 bit — **sign** (0 = positive, 1 = negative)
+* 1 bit — **sign** (0 = positive, 1 = negative ➕➖)
 * 8 bits — **exponent** (stored with bias = 127)
 * 23 bits — **fraction** (fractional part of the mantissa)
 
@@ -30,14 +30,16 @@ value = (−1)^sign_bit × 1.fraction_bits₂ × 2^(exponent_bits − 127)
 
 ---
 
-## 3. Range and precision
+## 3. Range and precision 🎯
 
 * Approximate magnitude range: **from ~1.18×10⁻³⁸ to ~3.4×10³⁸**.
 * Precision: about **6–7 decimal significant digits**.
 
+👉 Rule of thumb: `float` is fine for *rough* real numbers, but not for money, high‑precision physics, etc.
+
 ---
 
-## 4. Special values
+## 4. Special values ⚠️
 
 Reserved bit patterns:
 
@@ -45,9 +47,11 @@ Reserved bit patterns:
 * **+∞ / −∞** — exponent = 255 (all ones), fraction = 0.
 * **NaN** (Not a Number) — exponent = 255, fraction ≠ 0.
 
+NaN shows up when a result is mathematically “undefined”, like `0.0f / 0.0f`.
+
 ---
 
-## 5. Typical pitfalls with `float`
+## 5. Typical pitfalls with `float` 🪤
 
 1. **Using `==` for comparison is unsafe in general**
 
@@ -64,36 +68,43 @@ Reserved bit patterns:
 
    Many decimal fractions are not exactly representable in binary → tiny rounding errors.
 
-2. **Error accumulation**
+2. **Error accumulation** ⏱️
 
    A long sequence of operations can accumulate rounding error.
 
-3. **Overflow and loss of significance**
+3. **Overflow and loss of significance** 💥
 
    * Very large results → ±∞.
-   * Subtracting nearly equal numbers → loss of significant digits.
+   * Subtracting nearly equal numbers → loss of significant digits (cancellation).
 
 ---
 
-## 6. `float` vs `double`
+## 6. `float` vs `double` 🆚
 
 * `float`: 32 bits, ~6–7 decimal digits of precision.
-* `double`: 64 bits, ~15–16 decimal digits of precision. Usually preferred for serious numeric work.
+* `double`: 64 bits, ~15–16 decimal digits of precision.
+
+👉 In most serious numeric code, `double` is preferred; `float` is used when memory/performance really matters (graphics, large arrays, etc.).
 
 ---
 
-## 7. Relation to fixed‑point (`Fixed` from C++ Module 02)
+## 7. Relation to fixed‑point (`Fixed` from C++ Module 02) ⚖️
 
-* `float`: mantissa + exponent → the **binary point “floats”**, spacing between representable numbers depends on the magnitude.
-* fixed‑point: one integer + a fixed number of fractional bits → the **binary point is fixed**, spacing between representable numbers is constant (step = `1 / 2^fractionalBits`).
+* `float`: mantissa + exponent → the **binary point “floats”**; spacing between representable numbers grows with magnitude.
+* fixed‑point: one integer + a fixed number of fractional bits → the **binary point is fixed**; spacing between representable numbers is constant (step = `1 / 2^fractionalBits`).
+
+Think of it like this:
+
+* `float` = scientific notation in base 2.
+* fixed‑point = integer grid with a constant step size.
 
 ---
 
-# Cheat Sheet: Converting a number to ±1.xxx₂ × 2^e
+# Cheat Sheet: Converting a number to ±1.xxx₂ × 2^e 🔄
 
-This is the **normalized binary form** used conceptually by IEEE‑754.
+How to get the **normalized binary form** used conceptually by IEEE‑754.
 
-## 1. Core idea
+## 1. Core idea 💡
 
 For any non‑zero finite value:
 
@@ -103,7 +114,7 @@ where the part before the binary point is always exactly `1` (normalized form).
 
 ---
 
-## 2. High‑level algorithm (math view)
+## 2. High‑level algorithm (math view) 📐
 
 ### Step 1. Determine the sign
 
@@ -127,7 +138,7 @@ Result: a binary representation like `…xxx.yyy₂`.
 
 Move the binary point so that there is exactly one `1` to the left of it.
 
-* Example (large-ish number):
+* Example (larger number):
 
   * `101.11₂ → 1.0111₂ × 2²`
   * We shifted the point **left by 2 positions** → exponent `e = 2`.
@@ -144,9 +155,9 @@ Rule of thumb:
 
 We compensate that shift with the exponent `e`.
 
-### Step 4. Final normalized form
+### Step 4. Final normalized form ✅
 
-Now we can write:
+Write the number as:
 
 ```text
 x = (±1.mantissa₂) × 2^e
@@ -156,7 +167,7 @@ where `1.mantissa₂` is the normalized significand and `e` is the exponent.
 
 ---
 
-## 3. Mapping normalized form to IEEE‑754 `float`
+## 3. Mapping normalized form to IEEE‑754 `float` 🧾
 
 Once we have `x = (±1.mantissa₂) × 2^e`, we build the actual `float` fields:
 
@@ -175,7 +186,7 @@ Once we have `x = (±1.mantissa₂) × 2^e`, we build the actual `float` fields:
    * pad with zeros if fewer than 23 bits,
    * round if more than 23 bits.
 
-Decoding formula is then:
+Decoding formula:
 
 ```text
 value = (−1)^sign_bit × 1.fraction_bits₂ × 2^(exponent_bits − 127)
@@ -183,14 +194,14 @@ value = (−1)^sign_bit × 1.fraction_bits₂ × 2^(exponent_bits − 127)
 
 ---
 
-## 4. Mini‑example (5.75)
+## 4. Mini‑example (5.75) 🧊
 
 1. Decimal to binary:
 
    * 5.75₁₀ = 101.11₂
 2. Normalize:
 
-   * 101.11₂ → 1.0111₂ × 2² → mantissa = 1.0111₂, exponent `e = 2`.
+   * `101.11₂ → 1.0111₂ × 2²` → mantissa = `1.0111₂`, exponent `e = 2`.
 3. Sign:
 
    * `sign_bit = 0` (positive).
@@ -199,7 +210,7 @@ value = (−1)^sign_bit × 1.fraction_bits₂ × 2^(exponent_bits − 127)
    * `exponent_bits = e + 127 = 2 + 127 = 129` → `10000001₂`.
 5. Fraction bits:
 
-   * fractional part = `0111` then padded with zeros to 23 bits: `01110000000000000000000`.
+   * fractional part = `0111`, padded to 23 bits: `01110000000000000000000`.
 
 Final IEEE‑754 layout:
 
@@ -208,4 +219,4 @@ sign      exponent        fraction
 0         10000001        01110000000000000000000
 ```
 
-That bit pattern corresponds to `5.75f` in memory.
+This bit pattern is exactly `5.75f` in memory 💾.
