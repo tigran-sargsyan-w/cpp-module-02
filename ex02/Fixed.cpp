@@ -172,9 +172,9 @@ Fixed &Fixed::operator++(void)
 
 Fixed Fixed::operator++(int)
 {
-	Fixed tmp(*this);
+	Fixed old(*this);
 	value += 1;
-	return (tmp);
+	return (old);
 }
 
 Fixed &Fixed::operator--(void)
@@ -185,9 +185,9 @@ Fixed &Fixed::operator--(void)
 
 Fixed Fixed::operator--(int)
 {
-	Fixed tmp(*this);
+	Fixed old(*this);
 	value -= 1;
-	return (tmp);
+	return (old);
 }
 
 // ===== Min / Max =====
