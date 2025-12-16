@@ -168,6 +168,7 @@ Fixed Fixed::operator/(const Fixed &rhs) const
 // This makes the signature different: ++a -> operator++(), a++ -> operator++(int).
 // ISO/IEC 14882 - Section 13.5.7 - Overloaded increment and decrement operators 
 // http://www.ccfit.nsu.ru/~deviv/courses/_oop_/manuals/iso-cpp.pdf
+// https://en.cppreference.com/w/cpp/language/operator_incdec.html
 
 Fixed &Fixed::operator++(void)
 {
