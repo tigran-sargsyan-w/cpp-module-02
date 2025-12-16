@@ -119,11 +119,52 @@ std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
 // COMPARISON operators
 //==================================================
 
+/**
+ * @brief Greater than operator.
+ * Compares two fixed-point numbers.
+ * @param rhs The right-hand side Fixed object.
+ * @return true if this Fixed object is greater than rhs, false otherwise.
+ */
 bool Fixed::operator>(const Fixed &rhs) const { return (value > rhs.value); }
+
+/**
+ * @brief Less than operator.
+ * Compares two fixed-point numbers.
+ * @param rhs The right-hand side Fixed object.
+ * @return true if this Fixed object is less than rhs, false otherwise.
+ */
 bool Fixed::operator<(const Fixed &rhs) const { return (value < rhs.value); }
+
+/**
+ * @brief Greater than or equal to operator.
+ * Compares two fixed-point numbers.
+ * @param rhs The right-hand side Fixed object.
+ * @return true if this Fixed object is greater than or equal to rhs, false otherwise.
+ */
 bool Fixed::operator>=(const Fixed &rhs) const { return (value >= rhs.value); }
+
+/**
+ * @brief Less than or equal to operator.
+ * Compares two fixed-point numbers.
+ * @param rhs The right-hand side Fixed object.
+ * @return true if this Fixed object is less than or equal to rhs, false otherwise.
+ */
 bool Fixed::operator<=(const Fixed &rhs) const { return (value <= rhs.value); }
+
+/**
+ * @brief Equality operator.
+ * Compares two fixed-point numbers for equality.
+ * @param rhs The right-hand side Fixed object.
+ * @return true if both Fixed objects are equal, false otherwise.
+ */
 bool Fixed::operator==(const Fixed &rhs) const { return (value == rhs.value); }
+
+/**
+ * @brief Inequality operator.
+ * Compares two fixed-point numbers for inequality.
+ * @param rhs The right-hand side Fixed object.
+ * @return true if both Fixed objects are not equal, false otherwise.
+ */
 bool Fixed::operator!=(const Fixed &rhs) const { return (value != rhs.value); }
 
 //==================================================
