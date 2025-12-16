@@ -115,8 +115,9 @@ std::ostream &operator<<(std::ostream &out, const Fixed &fixed)
     return out;
 }
 
-
-// ===== Comparison operators =====
+//==================================================
+// COMPARISON operators
+//==================================================
 
 bool Fixed::operator>(const Fixed &rhs) const { return (value > rhs.value); }
 bool Fixed::operator<(const Fixed &rhs) const { return (value < rhs.value); }
@@ -125,8 +126,16 @@ bool Fixed::operator<=(const Fixed &rhs) const { return (value <= rhs.value); }
 bool Fixed::operator==(const Fixed &rhs) const { return (value == rhs.value); }
 bool Fixed::operator!=(const Fixed &rhs) const { return (value != rhs.value); }
 
-// ===== Arithmetic operators =====
+//==================================================
+// ARITHMETIC operators
+//==================================================
 
+/**
+ * @brief Addition operator.
+ * Adds two fixed-point numbers.
+ * @param rhs The right-hand side Fixed object.
+ * @return A new Fixed object representing the sum.
+ */
 Fixed Fixed::operator+(const Fixed &rhs) const
 {
 	Fixed out;
@@ -134,6 +143,12 @@ Fixed Fixed::operator+(const Fixed &rhs) const
 	return (out);
 }
 
+/**
+ * @brief Subtraction operator.
+ * Subtracts two fixed-point numbers.
+ * @param rhs The right-hand side Fixed object.
+ * @return A new Fixed object representing the difference.
+ */
 Fixed Fixed::operator-(const Fixed &rhs) const
 {
 	Fixed out;
@@ -141,6 +156,12 @@ Fixed Fixed::operator-(const Fixed &rhs) const
 	return (out);
 }
 
+/**
+ * @brief Multiplication operator.
+ * Multiplies two fixed-point numbers.
+ * @param rhs The right-hand side Fixed object.
+ * @return A new Fixed object representing the product.
+ */
 Fixed Fixed::operator*(const Fixed &rhs) const
 {
 	Fixed out;
@@ -151,6 +172,12 @@ Fixed Fixed::operator*(const Fixed &rhs) const
 	return (out);
 }
 
+/**
+ * @brief Division operator.
+ * Divides two fixed-point numbers.
+ * @param rhs The right-hand side Fixed object.
+ * @return A new Fixed object representing the quotient.
+ */
 Fixed Fixed::operator/(const Fixed &rhs) const
 {
 	Fixed out;
