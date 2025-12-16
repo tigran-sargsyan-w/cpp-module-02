@@ -162,7 +162,11 @@ Fixed Fixed::operator/(const Fixed &rhs) const
 	return (out);
 }
 
-// ===== Increment / Decrement =====
+
+//==================================================
+// INCREMENT / DECREMENT operators
+//==================================================
+
 // C++ rule: postfix increment/decrement are declared with a dummy `int`.
 // The argument is not used; the compiler passes an arbitrary value (typically 0).
 // This makes the signature different: ++a -> operator++(), a++ -> operator++(int).
@@ -170,12 +174,22 @@ Fixed Fixed::operator/(const Fixed &rhs) const
 // http://www.ccfit.nsu.ru/~deviv/courses/_oop_/manuals/iso-cpp.pdf
 // https://en.cppreference.com/w/cpp/language/operator_incdec.html
 
+/**
+ * @brief Pre-increment operator.
+ * Increments the fixed-point number by the smallest representable value.
+ * @return A reference to the incremented Fixed object.
+ */
 Fixed &Fixed::operator++(void)
 {
 	value += 1;
 	return (*this);
 }
 
+/**
+ * @brief Post-increment operator.
+ * Increments the fixed-point number by the smallest representable value.
+ * @return A copy of the Fixed object before incrementing.
+ */
 Fixed Fixed::operator++(int)
 {
 	Fixed old(*this);
@@ -183,12 +197,22 @@ Fixed Fixed::operator++(int)
 	return (old);
 }
 
+/**
+ * @brief Pre-decrement operator.
+ * Decrements the fixed-point number by the smallest representable value.
+ * @return A reference to the decremented Fixed object.
+ */
 Fixed &Fixed::operator--(void)
 {
 	value -= 1;
 	return (*this);
 }
 
+/**
+ * @brief Post-decrement operator.
+ * Decrements the fixed-point number by the smallest representable value.
+ * @return A copy of the Fixed object before decrementing.
+ */
 Fixed Fixed::operator--(int)
 {
 	Fixed old(*this);
@@ -196,7 +220,9 @@ Fixed Fixed::operator--(int)
 	return (old);
 }
 
-// ===== Min / Max =====
+//==================================================
+// MIN / MAX functions
+//==================================================
 
 /**
  * @brief Returns the minimum of two Fixed numbers.
