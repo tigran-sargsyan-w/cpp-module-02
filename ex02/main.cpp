@@ -1,6 +1,10 @@
 #include <iostream>
 #include "Fixed.hpp"
 
+/**
+ * @brief Main function to test the Fixed class.
+ * @return 0 on success.
+ */
 int main( void ) 
 {
     Fixed a;

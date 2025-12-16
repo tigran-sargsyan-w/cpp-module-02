@@ -198,21 +198,45 @@ Fixed Fixed::operator--(int)
 
 // ===== Min / Max =====
 
+/**
+ * @brief Returns the minimum of two Fixed numbers.
+ * @param a The first Fixed number.
+ * @param b The second Fixed number.
+ * @return A reference to the smaller of the two Fixed numbers.
+ */
 Fixed &Fixed::min(Fixed &a, Fixed &b)
 {
 	return (a < b ? a : b);
 }
 
+/**
+ * @brief Returns the minimum of two constant Fixed numbers.
+ * @param a The first constant Fixed number.
+ * @param b The second constant Fixed number.
+ * @return A constant reference to the smaller of the two Fixed numbers.
+ */
 const Fixed &Fixed::min(const Fixed &a, const Fixed &b)
 {
 	return (a < b ? a : b);
 }
 
+/**
+ * @brief Returns the maximum of two Fixed numbers.
+ * @param a The first Fixed number.
+ * @param b The second Fixed number.
+ * @return A reference to the larger of the two Fixed numbers.
+ */
 Fixed &Fixed::max(Fixed &a, Fixed &b)
 {
 	return (a > b ? a : b);
 }
 
+/**
+ * @brief Returns the maximum of two constant Fixed numbers.
+ * @param a The first constant Fixed number.
+ * @param b The second constant Fixed number.
+ * @return A constant reference to the larger of the two Fixed numbers.
+ */
 const Fixed &Fixed::max(const Fixed &a, const Fixed &b)
 {
 	return (a > b ? a : b);
