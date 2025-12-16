@@ -8,7 +8,7 @@ CXXFLAGS := -Wall -Wextra -Werror -std=c++98 -g3
 
 OBJ_DIR  := obj/
 
-SRCS     := main.cpp Fixed.cpp
+SRCS     := main.cpp Fixed.cpp Point.cpp bsp.cpp
 
 OBJS     := $(SRCS:%.cpp=$(OBJ_DIR)%.o)
 DEPS     := $(SRCS:%.cpp=$(OBJ_DIR)%.d)
