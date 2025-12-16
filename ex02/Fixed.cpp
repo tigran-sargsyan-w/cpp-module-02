@@ -166,6 +166,8 @@ Fixed Fixed::operator/(const Fixed &rhs) const
 // C++ rule: postfix increment/decrement are declared with a dummy `int`.
 // The argument is not used; the compiler passes an arbitrary value (typically 0).
 // This makes the signature different: ++a -> operator++(), a++ -> operator++(int).
+// ISO/IEC 14882 - Section 13.5.7 - Overloaded increment and decrement operators 
+// http://www.ccfit.nsu.ru/~deviv/courses/_oop_/manuals/iso-cpp.pdf
 
 Fixed &Fixed::operator++(void)
 {
