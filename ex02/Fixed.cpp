@@ -162,10 +162,10 @@ Fixed Fixed::operator/(const Fixed &rhs) const
 	return (out);
 }
 
-// ===== Increment / Decrement (epsilon = 1 / 256) =====
+// ===== Increment / Decrement =====
 // C++ rule: postfix increment/decrement are declared with a dummy `int`.
 // The argument is not used; the compiler passes an arbitrary value (typically 0).
-// This makes the signature different from prefix overloads: ++a -> operator++(), a++ -> operator++(int).
+// This makes the signature different: ++a -> operator++(), a++ -> operator++(int).
 
 Fixed &Fixed::operator++(void)
 {
