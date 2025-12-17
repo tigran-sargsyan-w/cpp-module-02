@@ -1,7 +1,6 @@
 # C++ Module 02 – Fixed-Point Numbers & Operator Overloading 🔢🧩
 
-✅ **Status**: Completed – all exercises *(ex03 optional)*
-
+✅ **Status**: Completed – all mandatory exercises *(ex03 optional)*
 🏫 **School**: 42 – C++ Modules (Module 02)
 
 > *Ad-hoc polymorphism, operator overloading, and the Orthodox Canonical Class Form (C++98).*
@@ -18,9 +17,9 @@
 * [How BSP Works (ex03)](#-how-bsp-works-ex03)
 
   * [BSP](#bsp)
-  * [Векторное произведение (Cross Product)](#векторное-произведение-cross-product)
-  * [Правило правой руки](#правило-правой-руки)
-  * [Что означает значение cross](#что-означает-значение-cross)
+  * [Cross Product](#cross-product)
+  * [Right-Hand Rule](#right-hand-rule)
+  * [What the `cross` Value Means](#what-the-cross-value-means)
 * [Exercises Overview](#-exercises-overview)
 
   * [ex00 – My First Class in Orthodox Canonical Form](#ex00--my-first-class-in-orthodox-canonical-form)
@@ -158,49 +157,50 @@ In this module we typically use the **cross product** approach (orientation test
 
 ### BSP
 
-BSP (Binary Space Partitioning) — это алгоритм, который позволяет определить, находится ли точка P внутри треугольника ABC.
+BSP (Binary Space Partitioning) is a technique that can be used to determine whether a point `P` is inside triangle `ABC`.
 
-#### Как определить, где точка P относительно треугольника ABC?
+#### How do we determine where `P` is relative to triangle `ABC`?
 
-[Вот статья по 2-м самым популярным способам](https://www.sunshine2k.de/coding/java/PointInTriangle/PointInTriangle.html) (на английском).
+Here’s a great article describing two of the most popular approaches (in English):
+[https://www.sunshine2k.de/coding/java/PointInTriangle/PointInTriangle.html](https://www.sunshine2k.de/coding/java/PointInTriangle/PointInTriangle.html)
 
-И есть несколько способов это сделать:
+There are multiple ways to solve the “point in triangle” problem:
 
-* использовать векторное произведение (cross product) двух векторов
-* использовать барицентрические координаты
-* использовать площадь треугольников
-* использовать углы между векторами
-* и т.д.
+* using the cross product of vectors
+* using barycentric coordinates
+* using triangle areas
+* using angles between vectors
+* etc.
 
-В данном модуле мы реализуем первый способ — используя векторное произведение.
+In this module, we implement the first approach — using the **cross product**.
 
 ---
 
-### Векторное произведение (Cross Product)
+### Cross Product
 
-Точка — это позиция: A(x, y).
+A **point** is a position: `A(x, y)`.
 
-Вектор — это направление + длина, которое получается как “перейти из одной точки в другую”.
+A **vector** is a direction + length, obtained by “going from one point to another”.
 
-Пример:
+Example:
 
-* A(0,0)
-* B(10,0)
+* `A(0, 0)`
+* `B(10, 0)`
 
-Тогда вектор AB = B - A:
+Then vector `AB = B - A`:
 
-* AB.x = B.x - A.x = 10 - 0 = 10
-* AB.y = B.y - A.y = 0 - 0 = 0
+* `AB.x = B.x - A.x = 10 - 0 = 10`
+* `AB.y = B.y - A.y = 0 - 0 = 0`
 
-То есть AB = (10, 0) — стрелка вправо.
-Точно так же:
+So `AB = (10, 0)` — an arrow pointing right.
+Similarly:
 
-* AP = P - A
-* BC = C - B
-* BP = P - B
-* и т.д.
+* `AP = P - A`
+* `BC = C - B`
+* `BP = P - B`
+* etc.
 
-👉 В коде это вот эти строки:
+👉 In code, this is typically written like:
 
 ```cpp
 Fixed abx = b.getX() - a.getX();
@@ -209,54 +209,53 @@ Fixed apx = p.getX() - a.getX();
 Fixed apy = p.getY() - a.getY();
 ```
 
-Формула:
+Formula:
 
 ```text
 cross(AB, AP) = AB.x * AP.y - AB.y * AP.x
 ```
 
-`cross` 2-х векторов — это по сути вектор перпендикулярный 2-м нашим векторам
-(в 2D мы считаем “z-компоненту”, которая говорит ориентацию: по/против часовой).
+The cross product of two vectors is perpendicular to both (in 2D we effectively compute the **Z component**), and its **sign** tells us the orientation (clockwise vs counter-clockwise).
 
 ---
 
-### Правило правой руки
+### Right-Hand Rule
 
-Исходя из правила правой руки, мы можем понять, где точка P относительно линии AB.
+Using the right-hand rule, we can understand where point `P` lies relative to the directed line `AB`.
 
-Варианты правила правой руки:
+Common right-hand rule variants:
 
-1. Index finger, middle finger RHR (Правило трёх пальцев правой руки).
+1. Index finger + middle finger RHR (three-finger rule).
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Right_hand_rule_cross_product.svg/1200px-Right_hand_rule_cross_product.svg.png" alt="Правило трёх пальцев правой руки" width="300"/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Right_hand_rule_cross_product.svg/1200px-Right_hand_rule_cross_product.svg.png" alt="Right-hand rule (three-finger)" width="300"/>
 
-2. Curl Fingers RHR (Правило правого винта).
+2. Curl Fingers RHR (right-hand screw rule).
 
-<img src="https://philschatz.com/calculus-book/resources/CNX_Calc_Figure_12_04_001.jpg" alt="Правило правого винта" width="300"/>
+<img src="https://philschatz.com/calculus-book/resources/CNX_Calc_Figure_12_04_001.jpg" alt="Right-hand screw rule" width="300"/>
 
-3. Palm-push RHR (Правило правой ладони).
+3. Palm-push RHR (right-hand palm rule).
 
-<img src="https://files.mtstatic.com/site_4539/34581/0/webview?Expires=1765924494&Signature=EYmoevzGFthZ8Pkzr~AsavqwswsyR8o010gKBb~1J1ajA-saICuSBqae62GxwFYk7nFO3jeoMDYko9ydle-c86xeh1LPRICS8Hu-0Ux-jcpZsS~jqx9nGuktVN-6XEQJSJC1wQNg~TMSRE57GAeDpkQEesClmBPy~Yuc7UnJBds_&Key-Pair-Id=APKAJ5Y6AV4GI7A555NA" alt="Правило правой ладони" width="300"/>
+<img src="https://files.mtstatic.com/site_4539/34581/0/webview?Expires=1765924494&Signature=EYmoevzGFthZ8Pkzr~AsavqwswsyR8o010gKBb~1J1ajA-saICuSBqae62GxwFYk7nFO3jeoMDYko9ydle-c86xeh1LPRICS8Hu-0Ux-jcpZsS~jqx9nGuktVN-6XEQJSJC1wQNg~TMSRE57GAeDpkQEesClmBPy~Yuc7UnJBds_&Key-Pair-Id=APKAJ5Y6AV4GI7A555NA" alt="Right-hand palm rule" width="300"/>
 
 > ⚠️ Note: the last image link may expire (it contains a signed URL). If you want long-term stability on GitHub, consider rehosting it or switching to a stable source.
 
 ---
 
-### Что означает значение cross
+### What the `cross` Value Means
 
-Что это число означает (самое важное!):
+This part is the most important:
 
-* **ЗНАК** говорит, где точка P относительно линии AB:
+* The **sign** tells where `P` is relative to the directed line `AB`:
 
-  * `cross > 0` → P слева
-  * `cross < 0` → P справа
-  * `cross = 0` → P на линии AB (на границе)
+  * `cross > 0` → `P` is on the **left** side of `AB`
+  * `cross < 0` → `P` is on the **right** side of `AB`
+  * `cross = 0` → `P` lies **on the line** `AB` (on the boundary)
 
-👉 Как это используется для треугольника `ABC`:
+👉 How it’s used for triangle `ABC`:
 
-* Вычисляем `cross(AB, AP)`, `cross(BC, BP)`, `cross(CA, CP)`
-* Если все три **одного знака** (и ни одно не равно 0), то точка **строго внутри**
-* Если хотя бы одно равно 0 → точка на границе → **false** (по subject: edges/vertices are excluded)
+* Compute `cross(AB, AP)`, `cross(BC, BP)`, `cross(CA, CP)`
+* If all three have the **same sign** (and none is `0`), then the point is **strictly inside**
+* If any of them is `0`, the point is on an edge/vertex → **false** (per subject: edges/vertices are excluded)
 
 ---
 
