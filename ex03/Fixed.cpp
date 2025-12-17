@@ -9,7 +9,7 @@ const int Fixed::fractionalBits = 8;
  */
 Fixed::Fixed() : value(0)
 {
-    std::cout << "Default constructor called" << std::endl;
+    // std::cout << "Default constructor called" << std::endl;
 }
 
 /**
@@ -19,7 +19,7 @@ Fixed::Fixed() : value(0)
  */
 Fixed::Fixed(const int intValue)
 {
-    std::cout << "Int constructor called" << std::endl;
+    // std::cout << "Int constructor called" << std::endl;
     value = intValue << fractionalBits;
 }
 
@@ -30,7 +30,7 @@ Fixed::Fixed(const int intValue)
  */
 Fixed::Fixed(const float floatValue)
 {
-    std::cout << "Float constructor called" << std::endl;
+    // std::cout << "Float constructor called" << std::endl;
     value = static_cast<int>(roundf(floatValue * (1 << fractionalBits)));
 }
 
@@ -40,7 +40,7 @@ Fixed::Fixed(const float floatValue)
  */
 Fixed::Fixed(const Fixed &other)
 {
-    std::cout << "Copy constructor called" << std::endl;
+    // std::cout << "Copy constructor called" << std::endl;
     *this = other;
 }
 
@@ -51,7 +51,7 @@ Fixed::Fixed(const Fixed &other)
  */
 Fixed &Fixed::operator=(const Fixed &other)
 {
-    std::cout << "Copy assignment operator called" << std::endl;
+    // std::cout << "Copy assignment operator called" << std::endl;
     if (this != &other)
         this->value = other.value;
     return *this;
@@ -62,7 +62,7 @@ Fixed &Fixed::operator=(const Fixed &other)
  */
 Fixed::~Fixed()
 {
-    std::cout << "Destructor called" << std::endl;
+    // std::cout << "Destructor called" << std::endl;
 }
 
 /**
