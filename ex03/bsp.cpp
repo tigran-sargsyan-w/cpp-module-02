@@ -1,5 +1,12 @@
 #include "Point.hpp"
 
+/**
+ * @brief Helper function to compute the cross product of vectors AB and AP.
+ * @param a The starting point of both vectors.
+ * @param b The end point of vector AB.
+ * @param p The end point of vector AP.
+ * @return The cross product as a Fixed number.
+ */
 static Fixed	cross(Point const &a, Point const &b, Point const &p)
 {
 	Fixed abx = b.getX() - a.getX();
@@ -10,6 +17,15 @@ static Fixed	cross(Point const &a, Point const &b, Point const &p)
 	return (abx * apy - aby * apx);
 }
 
+/**
+ * @brief Determines if a point is inside the triangle formed by points a, b, and c.
+ * Uses the cross product method to check the relative position of the point to the triangle edges.
+ * @param a The first vertex of the triangle.
+ * @param b The second vertex of the triangle.
+ * @param c The third vertex of the triangle.
+ * @param point The point to test.
+ * @return true if the point is inside the triangle, false otherwise.
+ */
 bool	bsp(Point const a, Point const b, Point const c, Point const point)
 {
 	Fixed d1 = cross(a, b, point);
