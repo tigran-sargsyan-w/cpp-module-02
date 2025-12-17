@@ -16,6 +16,7 @@ int	main(void)
 	Point c(0.0f, 10.0f);
 
 	test(a, b, c, Point(1.0f, 1.0f), "strictly inside");
+	test(a, b, c, Point(4.0f, 4.0f), "strictly inside");
 	test(a, b, c, Point(5.0f, 0.0f), "on edge AB");
 	test(a, b, c, Point(0.0f, 0.0f), "on vertex A");
 	test(a, b, c, Point(10.0f, 10.0f), "outside");
