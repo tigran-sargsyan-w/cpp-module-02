@@ -1,7 +1,8 @@
 # C++ Module 02 – Fixed-Point Numbers & Operator Overloading 🔢🧩
 
-✅ **Status**: Completed – all mandatory exercises *(ex03 optional)*
-🏫 **School**: 42 – C++ Modules (Module 02)
+✅ **Status**: Completed – all mandatory exercises *(ex03 optional)*  
+🏫 **School**: 42 – C++ Modules (Module 02)  
+🏅 **Score**: 100/100
 
 > *Ad-hoc polymorphism, operator overloading, and the Orthodox Canonical Class Form (C++98).*
 
