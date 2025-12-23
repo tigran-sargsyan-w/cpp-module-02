@@ -1,6 +1,6 @@
 # Шпаргалка: `float` (IEEE‑754, 32 бита) 💧
 
-Вот отличный ресурс по IEEE‑754: [Wiki - IEEE_754](https://en.wikipedia.org/wiki/IEEE_754)
+Вот отличный ресурс по IEEE‑754: [Wiki - IEEE_754](https://ru.wikipedia.org/wiki/IEEE_754)
 
 А вот калькулятор для визуализации: [FloatConverter - IEEE754](https://www.h-schmidt.net/FloatConverter/IEEE754.html)
 

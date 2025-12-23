@@ -1,5 +1,9 @@
 # Cheat Sheet: `float` (IEEE‑754, 32‑bit) 💧
 
+Here is a great resource on IEEE‑754: [Wiki - IEEE_754](https://en.wikipedia.org/wiki/IEEE_754)
+
+And here is a visualization calculator: [FloatConverter - IEEE754](https://www.h-schmidt.net/FloatConverter/IEEE754.html)
+
 ## 1. What `float` actually is 🧮
 
 * A **floating‑point** type: the value is stored approximately as
