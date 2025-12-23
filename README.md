@@ -236,7 +236,7 @@ Common right-hand rule variants:
 
 3. Palm-push RHR (right-hand palm rule).
 
-<img src="https://files.mtstatic.com/site_4539/34581/0/webview?Expires=1765924494&Signature=EYmoevzGFthZ8Pkzr~AsavqwswsyR8o010gKBb~1J1ajA-saICuSBqae62GxwFYk7nFO3jeoMDYko9ydle-c86xeh1LPRICS8Hu-0Ux-jcpZsS~jqx9nGuktVN-6XEQJSJC1wQNg~TMSRE57GAeDpkQEesClmBPy~Yuc7UnJBds_&Key-Pair-Id=APKAJ5Y6AV4GI7A555NA" alt="Right-hand palm rule" width="300"/>
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Openstax_college-physics_22.17_Lorentz-force-right-hand.jpg" alt="Right-hand palm rule" width="300"/>
 
 > ⚠️ Note: the last image link may expire (it contains a signed URL). If you want long-term stability on GitHub, consider rehosting it or switching to a stable source.
 
