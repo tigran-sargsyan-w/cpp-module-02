@@ -32,7 +32,7 @@ bool	bsp(Point const a, Point const b, Point const c, Point const point)
 	Fixed d2 = cross(b, c, point);
 	Fixed d3 = cross(c, a, point);
 
-	// На ребре (или на прямой ребра) — нельзя
+	// On the edge (or on the line of the edge) — not allowed
 	if (d1 == 0 || d2 == 0 || d3 == 0)
 		return (false);
 	
